@@ -163,7 +163,7 @@ function getKeyByPosition(inputRange, position) {
  * @return {Array.<string>} Array of HTML
  */
 function renderSliders(inputRange) {
-  const { classNames } = inputRange.props;
+  const { classNames, formattingCallback } = inputRange.props;
   const sliders = [];
   const keys = getKeys(inputRange);
   const values = valueTransformer.valuesFromProps(inputRange);
@@ -195,7 +195,8 @@ function renderSliders(inputRange) {
         percentage={ percentage }
         ref={ ref }
         type={ key }
-        value={ value } />
+        value={ value }
+        formattingCallback= { formattingCallback } />
     );
 
     sliders.push(slider);
@@ -602,6 +603,7 @@ InputRange.propTypes = {
   onChangeComplete: React.PropTypes.func,
   step: React.PropTypes.number,
   value: maxMinValuePropType,
+  formattingCallback: React.PropTypes.func,
 };
 
 /**

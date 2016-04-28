@@ -144,7 +144,7 @@ export default class Slider extends React.Component {
    * @return {string} Component JSX
    */
   render() {
-    const classNames = this.props.classNames;
+    const { classNames, formattingCallback, value} = this.props.classNames;
     const style = getStyle(this);
 
     return (
@@ -155,7 +155,7 @@ export default class Slider extends React.Component {
         <Label
           className={ classNames.labelValue }
           containerClassName={ classNames.labelContainer }>
-          { this.props.value }
+          { formattingCallback ? formattingCallback(value) : value }
         </Label>
 
         <a
@@ -163,7 +163,7 @@ export default class Slider extends React.Component {
           aria-controls={ this.props.ariaControls }
           aria-valuemax={ this.props.maxValue }
           aria-valuemin={ this.props.minValue }
-          aria-valuenow={ this.props.value }
+          aria-valuenow={ value }
           className={ classNames.slider }
           draggable="false"
           href="#"
@@ -203,4 +203,5 @@ Slider.propTypes = {
   percentage: React.PropTypes.number.isRequired,
   type: React.PropTypes.string.isRequired,
   value: React.PropTypes.number.isRequired,
+  formattingCallback: React.propTypes.func,
 };
