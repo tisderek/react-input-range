@@ -84,6 +84,5 @@
     "start": "gulp run",
     "test": "gulp test",
     "prepublish": "npm run build:lib",
-    "postinstall": "npm run build:lib"
   }
 }
