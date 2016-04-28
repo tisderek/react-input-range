@@ -54,6 +54,11 @@ class App extends React.Component {
     console.log(value);
   }
 
+  formatSliderValue(value) {
+    // return ALL_RATINGS[nextProps.filterKey][value]
+    return `value: ${value}`
+  }
+
   render() {
     const defaultValue = 2;
     const defaultValue2 = {
@@ -69,6 +74,7 @@ class App extends React.Component {
           value={this.state.value}
           onChange={this.handleValueChange.bind(this)}
           onChangeComplete={this.handleChangeComplete.bind(this)}
+          formattingCallback={this.formatSliderValue}
         />
 
         <InputRange
@@ -77,6 +83,8 @@ class App extends React.Component {
           value={this.state.value4}
           onChange={this.handleValue4Change.bind(this)}
           onChangeComplete={this.handleChangeComplete.bind(this)}
+          formattingCallback={this.formatSliderValue}
+
         />
 
         <InputRange
@@ -85,6 +93,8 @@ class App extends React.Component {
           value={this.state.value2}
           defaultValue={defaultValue}
           onChange={this.handleValue2Change.bind(this)}
+          formattingCallback={this.formatSliderValue}
+
         />
 
         <InputRange
@@ -93,6 +103,8 @@ class App extends React.Component {
           value={this.state.value5}
           defaultValue={defaultValue2}
           onChange={this.handleValue5Change.bind(this)}
+          formattingCallback={this.formatSliderValue}
+          
         />
 
         <InputRange

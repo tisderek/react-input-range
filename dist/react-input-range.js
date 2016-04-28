@@ -124,7 +124,9 @@ function getKeyByPosition(inputRange, position) {
 }
 
 function renderSliders(inputRange) {
-  var classNames = inputRange.props.classNames;
+  var _inputRange$props = inputRange.props;
+  var classNames = _inputRange$props.classNames;
+  var formattingCallback = _inputRange$props.formattingCallback;
 
   var sliders = [];
   var keys = getKeys(inputRange);
@@ -143,9 +145,9 @@ function renderSliders(inputRange) {
       var percentage = percentages[key];
       var ref = 'slider' + (0, _util.captialize)(key);
 
-      var _inputRange$props = inputRange.props;
-      var maxValue = _inputRange$props.maxValue;
-      var minValue = _inputRange$props.minValue;
+      var _inputRange$props2 = inputRange.props;
+      var maxValue = _inputRange$props2.maxValue;
+      var minValue = _inputRange$props2.minValue;
 
       if (key === 'min') {
         maxValue = values.max;
@@ -165,7 +167,8 @@ function renderSliders(inputRange) {
         percentage: percentage,
         ref: ref,
         type: key,
-        value: value });
+        value: value,
+        formattingCallback: formattingCallback });
 
       sliders.push(slider);
     }
@@ -505,7 +508,8 @@ InputRange.propTypes = {
   onChange: _react2['default'].PropTypes.func.isRequired,
   onChangeComplete: _react2['default'].PropTypes.func,
   step: _react2['default'].PropTypes.number,
-  value: _propTypes.maxMinValuePropType
+  value: _propTypes.maxMinValuePropType,
+  formattingCallback: _react2['default'].PropTypes.func
 };
 
 InputRange.defaultProps = {
@@ -697,7 +701,11 @@ var Slider = (function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var classNames = this.props.classNames;
+      var _props = this.props;
+      var classNames = _props.classNames;
+      var formattingCallback = _props.formattingCallback;
+      var value = _props.value;
+
       var style = getStyle(this);
 
       return _react2['default'].createElement(
@@ -711,14 +719,14 @@ var Slider = (function (_React$Component) {
           {
             className: classNames.labelValue,
             containerClassName: classNames.labelContainer },
-          this.props.value
+          formattingCallback ? formattingCallback(value) : value
         ),
         _react2['default'].createElement('a', {
           'aria-labelledby': this.props.ariaLabelledby,
           'aria-controls': this.props.ariaControls,
           'aria-valuemax': this.props.maxValue,
           'aria-valuemin': this.props.minValue,
-          'aria-valuenow': this.props.value,
+          'aria-valuenow': value,
           className: classNames.slider,
           draggable: 'false',
           href: '#',
@@ -746,7 +754,8 @@ Slider.propTypes = {
   onSliderMouseMove: _react2['default'].PropTypes.func.isRequired,
   percentage: _react2['default'].PropTypes.number.isRequired,
   type: _react2['default'].PropTypes.string.isRequired,
-  value: _react2['default'].PropTypes.number.isRequired
+  value: _react2['default'].PropTypes.number.isRequired,
+  formattingCallback: _react2['default'].PropTypes.func
 };
 module.exports = exports['default'];
 

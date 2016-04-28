@@ -144,7 +144,7 @@ export default class Slider extends React.Component {
    * @return {string} Component JSX
    */
   render() {
-    const { classNames, formattingCallback, value} = this.props.classNames;
+    const { classNames, formattingCallback, value} = this.props;
     const style = getStyle(this);
 
     return (
@@ -203,5 +203,5 @@ Slider.propTypes = {
   percentage: React.PropTypes.number.isRequired,
   type: React.PropTypes.string.isRequired,
   value: React.PropTypes.number.isRequired,
-  formattingCallback: React.propTypes.func,
+  formattingCallback: React.PropTypes.func,
 };
